@@ -97,7 +97,6 @@ def observed_temps():
     station_record_count = session.query(measurement.station,func.count(measurement.date)).\
         group_by(measurement.station).\
         order_by(func.count(measurement.date).desc()).all()
-    #station_record_count
 
     #variable stores a dynamic reference to the most active station
     most_active_station = station_record_count[0][0]
@@ -140,12 +139,9 @@ def temp_from_start_to_end(start,end):
     func.max(measurement.tobs),
     func.avg(measurement.tobs)
     ]
-    # start_date = datetime.strptime(start, '%Y-%m-%d')
     start_date = start
-    print(start_date)
 
     if end != '':
-        # end_date = datetime.strptime(end, '%Y-%m-%d')
         end_date = end
         print(end_date)
         rain_date_data = session.query(*sel)\
